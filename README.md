@@ -29,6 +29,7 @@
     * [飞机大战](https://github.com/MH-Blog/Python/tree/master/%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98)
 * [实战项目](#实战项目)
     * [Python连接MySQL](https://github.com/MH-Blog/Python/tree/master/Python%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)
+    * [百度图像识别]()
 * [其它](#其它)
 
 
@@ -59,6 +60,22 @@
   ```
 
   MySQL常用命令：https://blog.csdn.net/hzw6991/article/details/87757426
+
+- 百度图像识别
+
+  第三方依赖库安装：
+
+  ```
+   pip3 install PyQt5,sip,PyQt5-tools
+  ```
+
+  使用方法：
+
+  ```
+  from PyQt5 import QtCore, QtGui, QtWidgets
+  ```
+
+  原理说明:https://magichuang.cn/302.html
 
 
 
