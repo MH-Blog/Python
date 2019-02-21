@@ -1,19 +1,24 @@
 # Python Code
 
 * 贵有恒，何必三更起五更睡；最无益，只怕一日暴十寒。
+
 * Python3爬虫实战：实战源码+博客讲解
+
 * [个人网站](https://magichuang.cn/ "悬停显示")
+
 * [CSDN博客](https://blog.csdn.net/hzw6991 "悬停显示")
+
 * [B站主页](http://space.bilibili.com/35282222?"悬停显示")
-* 微信公众号:
-  ![image](https://github.com/MH-Blog/Python/blob/master/Pictures/MH-Blog.jpg)
+
 * 学习交流群【726755931】
+
+* 微信公众号:
+
+  ![image](https://github.com/MH-Blog/Python/blob/master/Pictures/MH-Blog.jpg)
 
 ## 声明
 
 * 代码、教程均为Magic Huang本人原创，且仅限于学习交流，请勿用于任何商业用途！
-
-### 文章首发声明
 
 * 文章在自己的个人网站首发，其他平台文章均属转发，如想获得最新更新进展，欢迎关注我的个人网站：[神奇的老黄](https://magichuang.cn/ "悬停显示")
 
