@@ -5,7 +5,6 @@ author: 神奇的老黄
 gtihub: https://github.com/MH-Blog
 site: https://magichuang.cn
 date: 2019.02.14 23:08
-此项目只实现了:通用文字 银行卡 植物 三种图片的识别功能,其他可类似
 '''
 
 import base64
