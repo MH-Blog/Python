@@ -1,28 +1,29 @@
 # Python Code
 
-* 贵有恒，何必三更起五更睡；最无益，只怕一日暴十寒。
+- 贵有恒，何必三更起五更睡；最无益，只怕一日暴十寒。
 
-* Python3爬虫实战：实战源码+博客讲解
+- Vue相关：实战源码+博客讲解
 
-* [个人网站](https://magichuang.cn/ "悬停显示")
+- [个人网站](http://pythonsky.cn/ "Python的天空")
 
-* [CSDN博客](https://blog.csdn.net/hzw6991 "悬停显示")
+- [CSDN博客](https://blog.csdn.net/hzw6991 "神奇的老黄")
 
-* [B站主页](http://space.bilibili.com/35282222?"悬停显示")
+- 学习交流群【726755931】[![image](https://github.com/MH-Blog/Pictures/raw/master/qqgroup.png)](https://jq.qq.com/?wv=1027&k=5vfXUJ0"QQ交流群")
 
-* 学习交流群【726755931】
+- 分享技术，乐享生活：【神奇的老黄】公众号每周分享Python 、前端相关教程资源，欢迎您的关注！
 
-* 微信公众号:
+  ![image](https://github.com/MH-Blog/Pictures/raw/master/MH-Blog.jpg)
 
-  ![image](https://github.com/MH-Blog/Python/blob/master/Pictures/MH-Blog.jpg)
+### 声明
 
-## 声明
+------
 
-* 代码、教程均为Magic Huang本人原创，且仅限于学习交流，请勿用于任何商业用途！
+- 代码、教程均为Magic Huang本人原创，且仅限于学习交流，请勿用于任何商业用途！
+- 文章在自己的个人网站首发，其他平台文章均属转发，如想获得最新更新进展，欢迎关注我的个人网站：[Python的天空](http://pythonsky.cn/)
 
-* 文章在自己的个人网站首发，其他平台文章均属转发，如想获得最新更新进展，欢迎关注我的个人网站：[神奇的老黄](https://magichuang.cn/ "悬停显示")
 
-## 目录
+
+### 目录
 
 * [学习笔记](#学习笔记)
     * [面向对象](https://github.com/MH-Blog/Python/tree/master/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1)
@@ -33,7 +34,7 @@
 * [其它](#其它)
 
 
-## 学习笔记
+#### 学习笔记
 
 * 飞机大战
 
@@ -41,9 +42,9 @@
 
   动态示意图：
 
-  ![image](https://github.com/MH-Blog/Python/blob/master/Pictures/1.gif)
+  ![image](https://github.com/MH-Blog/Pictures/raw/master/1.gif)
 
-## 实战项目
+#### 实战项目
 
 - Python连接MySQL数据库并实现CURD
 
@@ -75,10 +76,9 @@
   from PyQt5 import QtCore, QtGui, QtWidgets
   ```
 
-  原理说明:https://magichuang.cn/302.html
 
 
 
-## 其它
+### 其它
 
  * 欢迎 Pull requests，感谢贡献。
