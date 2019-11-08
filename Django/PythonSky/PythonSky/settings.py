@@ -77,10 +77,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'NAME': 'pythonsky_cn',  # 数据库名
-        'USER': 'ubuntu',  # 用户名
-        'PASSWORD': 'ubuntu',  # 密码
-        'HOST': '106.13.148.13',  # 数据库主机，默认为localhost
-        'PORT': '3306',  # 数据库端口，MySQL默认为3306
+        'USER': 'root',  # 用户名
+        'PASSWORD': 'root',  # 密码
+        'HOST': '',  # 数据库主机，默认为localhost
+        'PORT': '',  # 数据库端口，MySQL默认为3306
         'OPTIONS': {
             'autocommit': True,
         },
