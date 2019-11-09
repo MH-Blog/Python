@@ -10,18 +10,24 @@ __all__ = ["UserProfile", "EmailVerifyRecord", "PageBanner"]
 # 用户信息
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name='昵称', default='', blank=True, null=True)
-    birthday = models.DateField(verbose_name='生日', default='', blank=True, null=True)
-    gender = models.CharField(choices=(('male', '男'), ('female', '女')), default='male', max_length=5)
+    birthday = models.DateField(verbose_name='生日', blank=True, null=True)
+    gender = models.CharField(choices=(('male', '男'), ('female', '女')), default='male', max_length=6)
     address = models.CharField(max_length=100, verbose_name='地址', default='', blank=True, null=True)
     mobile = models.CharField(max_length=11, verbose_name='手机号', default='', blank=True, null=True)
-    avatar = models.ImageField(upload_to='avatar/%Y/%m', default='avatar/default.png', max_length=100)
+    avatar = models.ImageField(upload_to='avatar/%Y/%m', default='avatar/default.png', null=True, blank=True)
+    add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '用户信息'
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        self.username
+        if self.nick_name:
+            # 如果不为空则返回用户名
+            return self.nick_name
+        else:
+            # 如果用户名为空则返回不能为空的对象
+            return self.username
 
 
 # 邮箱验证码
@@ -29,7 +35,7 @@ class EmailVerifyRecord(models.Model):
     code = models.CharField(max_length=20, verbose_name='验证码')
     email = models.CharField(max_length=50, verbose_name='邮箱')
     send_type = models.CharField(max_length=10, verbose_name='邮箱', choices=(('register', '注册'), ('forget', "找回密码")))
-    send_time = models.DateTimeField(default=datetime.now())
+    send_time = models.DateTimeField(default=datetime.now, verbose_name='发送时间')
 
     class Meta:
         verbose_name = '邮箱验证码'
@@ -38,15 +44,15 @@ class EmailVerifyRecord(models.Model):
 
 # 轮播图
 class PageBanner(models.Model):
-    title = models.CharField(max_length=100, verbose_name='标题')
-    image = models.ImageField(upload_to='banner/%Y/%m', verbose_name='轮播图')
+    title = models.CharField(max_length=100, verbose_name='标题', default='', null=True, blank=True)
+    image = models.ImageField(upload_to='banner/%Y/%m', default='', verbose_name='轮播图', null=True, blank=True)
     url = models.URLField(max_length=200, verbose_name='访问地址')
     index = models.IntegerField(default=100, verbose_name="图片顺序")
-    add_time = models.DateTimeField(default=datetime.now(), verbose_name='添加时间')
+    add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
 
     class Meta:
         verbose_name = "轮播图"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        self.title
+        return self.title
