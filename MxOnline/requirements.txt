@@ -1,0 +1,10 @@
+PyMySQL==0.9.3
+future==0.18.2
+XlsxWriter==1.2.5
+Django==2.2.7
+httplib2==0.14.0
+six==1.13.0
+xlwt==1.3.0
+django_crispy_forms==1.8.0
+django_formtools==2.1
+django_reversion==3.0.4

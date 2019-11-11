@@ -2,9 +2,8 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 
-__all__ = ["UserProfile", "EmailVerifyRecord", "PageBanner"]
+# Create your models here.
 
 
 # 用户信息
@@ -14,7 +13,7 @@ class UserProfile(AbstractUser):
     gender = models.CharField(choices=(('male', '男'), ('female', '女')), default='male', max_length=6)
     address = models.CharField(max_length=100, verbose_name='地址', default='', blank=True, null=True)
     mobile = models.CharField(max_length=11, verbose_name='手机号', default='', blank=True, null=True)
-    avatar = models.ImageField(upload_to='avatar/%Y/%m', default='avatar/default.png', null=True, blank=True)
+    image = models.ImageField(upload_to='image/%Y/%m', default='avatar/default.png', null=True, blank=True)
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
 
     class Meta:
@@ -43,7 +42,7 @@ class EmailVerifyRecord(models.Model):
 
 
 # 轮播图
-class PageBanner(models.Model):
+class Banner(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题', default='', null=True, blank=True)
     image = models.ImageField(upload_to='banner/%Y/%m', default='', verbose_name='轮播图', null=True, blank=True)
     url = models.URLField(max_length=200, verbose_name='访问地址')

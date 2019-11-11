@@ -2,7 +2,6 @@ from datetime import datetime
 from django.db import models
 
 # Create your models here.
-__all__ = ['Course', 'Lesson', 'Video', 'CourseResource']
 
 
 class Course(models.Model):
