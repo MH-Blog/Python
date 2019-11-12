@@ -1,12 +1,15 @@
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+from django.contrib.auth.hashers import make_password
 # Create your views here.
+from django.urls import reverse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from .models import UserProfile
 from .forms import LoginForm, RegisterForm, ForgetPwdForm, ModifyPwdForm
+from utils.email_send import send_register_eamil
 
 
 # 邮箱和用户名都可以登录
@@ -45,13 +48,37 @@ class LoginView(View):
                 if user.is_active:
                     # 只有注册激活才能登录
                     login(request, user)
-                    return render(request, 'index.html')
+                    return HttpResponseRedirect(reverse('index'))
                 else:
                     return render(request, 'login.html', {'msg': '用户名或密码错误', 'login_form': login_form})
             # 只有当用户名或密码不存在时，才返回错误信息到前端
             else:
-                return render(request, 'login.html', {'msg': '用户名或密码错误', 'login_form': login_form})
+                return render(request, 'login.html', {'login_form': login_form})
 
         # form.is_valid（）已经判断不合法了，所以这里不需要再返回错误信息到前端了
         else:
             return render(request, 'login.html', {'login_form': login_form})
+
+
+# 注册
+class RegisterView(View):
+    def get(self, request):
+        register_form = RegisterForm()
+        return render(request, 'register.html', {'register_form': register_form})
+
+    def post(self, request):
+        register_form = RegisterForm(request.POST)
+        if register_form.is_valid():
+            email = request.POST.get('email', '')
+            if UserProfile.objects.filter(email=email):
+                return render(request, 'register.html', {'register_form': register_form, 'msg': '用户已存在'})
+            pass_word = request.POST.get('password', '')
+            user_profile = UserProfile()
+            user_profile.username = email
+            user_profile.email = email
+            user_profile.password = make_password(pass_word)
+            user_profile.save()
+            send_register_eamil(email, 'register')
+            pass
+        else:
+            return render(request, 'register.html', {'register_form': register_form})

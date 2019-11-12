@@ -14,6 +14,11 @@ class CityDictAdmin(object):
     list_display = ['name', 'desc', 'add_time']
     search_fields = ['name', 'desc']
     list_filter = ['name', 'desc', 'add_time']
+    data_charts = {
+        "city_dict": {'title': "City Dict", "x-field": "add_time", "y-field": ("name",),
+                      "order": ('add_time',)},
+
+    }
 
 
 class CourseOrgAdmin(object):

@@ -134,6 +134,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# 发送邮箱
+
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "695859954@qq.com"
+EMAIL_HOST_PASSWORD = "dwjybikeqdawhhbc"
+EMAIL_USE_TLS = True
+EMAIL_FROM = "695859954@qq.com"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

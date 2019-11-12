@@ -8,7 +8,7 @@ __all__ = ['CourseOrg', 'Teacher', 'CityDict']
 class CityDict(models.Model):
     name = models.CharField('城市', max_length=20)
     desc = models.CharField('描述', max_length=200)
-    add_time = models.DateTimeField(default=datetime.now)
+    add_time = models.DateTimeField('添加时间', default=datetime.now)
 
     class Meta:
         verbose_name = '城市'
@@ -35,7 +35,7 @@ class CourseOrg(models.Model):
     image = models.ImageField('logo', upload_to='org/%Y/%m', default='', null=True, blank=True)
     address = models.CharField('机构地址', max_length=150, )
     city = models.ForeignKey(CityDict, verbose_name='所在城市', on_delete=models.CASCADE)
-    add_time = models.DateTimeField(default=datetime.now)
+    add_time = models.DateTimeField('添加时间', default=datetime.now)
 
     class Meta:
         verbose_name = '课程机构'
@@ -64,7 +64,7 @@ class Teacher(models.Model):
         upload_to="teacher/%Y/%m",
         verbose_name="头像",
         null=True, blank=True)
-    add_time = models.DateTimeField(default=datetime.now)
+    add_time = models.DateTimeField('添加时间', default=datetime.now)
 
     class Meta:
         verbose_name = '教师'

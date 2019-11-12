@@ -13,8 +13,9 @@ class UserProfile(AbstractUser):
     gender = models.CharField(choices=(('male', '男'), ('female', '女')), default='male', max_length=6)
     address = models.CharField(max_length=100, verbose_name='地址', default='', blank=True, null=True)
     mobile = models.CharField(max_length=11, verbose_name='手机号', default='', blank=True, null=True)
-    image = models.ImageField(upload_to='image/%Y/%m', default='avatar/default.png', null=True, blank=True)
+    image = models.ImageField(upload_to='image/%Y/%m', default='image/default.png', null=True, blank=True)
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
+    desc=models.CharField(max_length=50, verbose_name='个性签名', default='人生苦短，我用Python', blank=True, null=True)
 
     class Meta:
         verbose_name = '用户信息'
