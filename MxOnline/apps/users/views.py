@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
-from .models import UserProfile
+from .models import UserProfile, EmailVerifyRecord
 from .forms import LoginForm, RegisterForm, ForgetPwdForm, ModifyPwdForm
 from utils.email_send import send_register_eamil
 
@@ -50,7 +50,7 @@ class LoginView(View):
                     login(request, user)
                     return HttpResponseRedirect(reverse('index'))
                 else:
-                    return render(request, 'login.html', {'msg': '用户名或密码错误', 'login_form': login_form})
+                    return render(request, 'login.html', {'msg': '用户未激活，请注册的邮箱并激活', 'login_form': login_form})
             # 只有当用户名或密码不存在时，才返回错误信息到前端
             else:
                 return render(request, 'login.html', {'login_form': login_form})
@@ -69,16 +69,85 @@ class RegisterView(View):
     def post(self, request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
-            email = request.POST.get('email', '')
+            email = request.POST.get('email', None)
             if UserProfile.objects.filter(email=email):
                 return render(request, 'register.html', {'register_form': register_form, 'msg': '用户已存在'})
-            pass_word = request.POST.get('password', '')
+            pass_word = request.POST.get('password', None)
             user_profile = UserProfile()
             user_profile.username = email
             user_profile.email = email
+            user_profile.is_active = False
+            # 对保存到数据库的密码加密
             user_profile.password = make_password(pass_word)
             user_profile.save()
             send_register_eamil(email, 'register')
-            pass
+            return render(request, 'login.html')
         else:
             return render(request, 'register.html', {'register_form': register_form})
+
+
+# 激活
+class ActiveUserView(View):
+    def get(self, request, active_code):
+        record = EmailVerifyRecord.objects.get(code=active_code)
+        if record  and record.is_valid:
+            email = record.email
+            record.is_valid = False
+            user = UserProfile.objects.get(email=email)
+            user.is_active = True
+            user.save()
+            record.save()
+            return render(request, 'login.html')
+        else:
+            return render(request, 'active_fail.html')
+
+
+# 忘记密码
+class ForgetPwdView(View):
+    def get(self, request):
+        forget_form = ForgetPwdForm()
+        return render(request, 'forgetpwd.html', {'forget_form': forget_form})
+
+    def post(self, request):
+        forget_form = ForgetPwdForm(request.POST)
+        if forget_form.is_valid():
+            email = request.POST.get('email', None)
+            send_register_eamil(email, 'forget')
+            return render(request, 'send_success.html')
+        else:
+            return render(request, 'forgetpwd.html', {'forget_form': forget_form})
+
+
+class ResetView(View):
+    def get(self, request, active_code):
+        record = EmailVerifyRecord.objects.get(code=active_code)
+        if record and record.is_valid :
+            email = record.email
+            return render(request, "password_reset.html", {"email": email,"record":active_code})
+        else:
+            return render(request, "active_fail.html")
+
+
+class ModifyPwdView(View):
+    '''修改用户密码'''
+
+    def post(self, request):
+        modify_form = ModifyPwdForm(request.POST)
+        if modify_form.is_valid():
+            pwd1 = request.POST.get("password1", "")
+            pwd2 = request.POST.get("password2", "")
+            record = request.POST.get("record", "")
+            email = request.POST.get("email", "")
+            if pwd1 != pwd2:
+                return render(request, "password_reset.html", {"email": email, "msg": "密码不一致！"})
+            user = UserProfile.objects.get(email=email)
+            user.password = make_password(pwd2)
+            user.save()
+            record = EmailVerifyRecord.objects.get(code=record)
+            record.is_valid = False
+            record.save()
+
+            return render(request, "login.html")
+        else:
+            email = request.POST.get("email", "")
+            return render(request, "password_reset.html", {"email": email, "modify_form": modify_form})

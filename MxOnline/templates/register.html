@@ -10,6 +10,18 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
 <body>
+<header>
+    <div class="c-box fff-box">
+        <div class="wp header-box">
+            <p class="fl hd-tips">慕学在线，在线学习平台！</p>
+            <ul class="fr hd-bar">
+                <li>服务电话：<span>4001008031</span></li>
+                <li><a href="{% url 'login' %}">[登录]</a></li>
+                <li class="active"><a href="{% url 'register' %}">[注册]</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
 <div class="loginbox dialogbox">
     <h1>账号登录</h1>
     <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png' %}"/></div>
@@ -63,18 +75,7 @@
 </div>
 
 <div class="bg" id="dialogBg"></div>
-<header>
-    <div class="c-box fff-box">
-        <div class="wp header-box">
-            <p class="fl hd-tips">慕学在线，在线学习平台！</p>
-            <ul class="fr hd-bar">
-                <li>服务电话：<span>4001008031</span></li>
-                <li><a href="{% url 'login' %}">[登录]</a></li>
-                <li class="active"><a href="{% url 'register' %}">[注册]</a></li>
-            </ul>
-        </div>
-    </div>
-</header>
+
 <section>
     <div class="c-box bg-box">
         <div class="login-box clearfix">
@@ -142,13 +143,13 @@
                     <form id="email_register_form" method="post" action="{% url 'register' %}" autocomplete="off">
                         <div class="form-group marb20  {% if register_form.errors.email %}errorput{% endif %}">
                             <label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-                            <input type="text" id="id_email" name="email" value="{{ register_form.email.value }}"
+                            <input type="text" id="id_email" name="email" value=""
                                    placeholder="请输入您的邮箱地址"/>
                         </div>
                         <div class="form-group marb8  {% if register_form.errors.password %}errorput{% endif %}">
                             <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                             <input type="password" id="id_password" name="password"
-                                   value="{{ register_form.password.value }}"
+                                   value=""
                                    placeholder="请输入6-20位非中文字符密码"/>
                         </div>
                         <div class="form-group marb8 captcha1 {% if register_form.errors.captcha %}errorput{% endif %}">

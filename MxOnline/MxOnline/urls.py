@@ -19,7 +19,6 @@ from django.views.generic import TemplateView
 import xadmin
 from xadmin.plugins import xversion
 from MxOnline.settings import MEDIA_ROOT
-from users.views import LoginView
 
 xadmin.autodiscover()
 xversion.register_models()
@@ -28,7 +27,7 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', TemplateView.as_view(template_name="index.html"), name='index'),
     # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
-    re_path(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
+    re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
     path('captcha/', include('captcha.urls')),
     path('user/', include('users.urls'))
 ]
