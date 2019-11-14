@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reversion',
     'captcha',
-
+    'pure_pagination',
 ]
 
 MIDDLEWARE = [

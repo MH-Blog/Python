@@ -90,7 +90,7 @@ class RegisterView(View):
 class ActiveUserView(View):
     def get(self, request, active_code):
         record = EmailVerifyRecord.objects.get(code=active_code)
-        if record  and record.is_valid:
+        if record and record.is_valid:
             email = record.email
             record.is_valid = False
             user = UserProfile.objects.get(email=email)
@@ -118,16 +118,18 @@ class ForgetPwdView(View):
             return render(request, 'forgetpwd.html', {'forget_form': forget_form})
 
 
+# 重置密码
 class ResetView(View):
     def get(self, request, active_code):
         record = EmailVerifyRecord.objects.get(code=active_code)
-        if record and record.is_valid :
+        if record and record.is_valid:
             email = record.email
-            return render(request, "password_reset.html", {"email": email,"record":active_code})
+            return render(request, "password_reset.html", {"email": email, "record": active_code})
         else:
             return render(request, "active_fail.html")
 
 
+# 重置密码验证
 class ModifyPwdView(View):
     '''修改用户密码'''
 

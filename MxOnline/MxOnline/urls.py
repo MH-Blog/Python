@@ -29,5 +29,11 @@ urlpatterns = [
     # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
     re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
     path('captcha/', include('captcha.urls')),
-    path('user/', include('users.urls'))
+    # 个人信息
+    path("users/", include('users.urls', namespace='users')),
+    # 课程机构app相关url配置
+    path("org/", include('organization.urls', namespace="org")),
+    # 课程app相关url配置
+    path("course/", include('courses.urls', namespace="course")),
+
 ]

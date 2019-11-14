@@ -5,6 +5,9 @@
 from django.urls import path, re_path
 from .views import *
 
+# 要写上app的名字
+app_name = "users"
+
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
