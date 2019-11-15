@@ -1,57 +1,68 @@
+{#templates/base.html#}
+
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
-{% load staticfiles %}
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>{% block title %}课程机构列表 - 慕学在线网{% endblock %}</title>
+    <title>{% block title %}zhang_derek{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    {% block custom_css %}{% endblock %}
+    {% block custom_css %}
+
+    {% endblock %}
     <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
-    {% block custom_js %}{% endblock %}
+
 </head>
 <body>
+
 <section class="headerwrap ">
     <header>
         <div class=" header">
             <div class="top">
                 <div class="wp">
-                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>
+                    {#                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>#}
+                    <div class="fl"><p><a style="color: white;font-size: 18px;"
+                                          href="http://www.cnblogs.com/derek1184405959/"><b>我的博客园地址</b></a></p></div>
+                    <!--登录后跳转-->
+
                     {% if request.user.is_authenticated %}
                         <div class="personal">
                             <dl class="user fr">
-                                <dd>{{ user.username }}<img class="down fr" src="{% static 'images/top_down.png' %}"/>
-                                </dd>
-                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                                <dd>{{ user.username }}<img class="down fr"
+                                                            src="{% static "images/top_down.png" %}"/></dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
                                 <dl>
-                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/>
-                                    </dt>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                                     <dd>
-                                        <h3>{{ user.desc }}</h3>
+                                        <h3>{{ request.user.desc }}</h3>
                                     </dd>
                                 </dl>
                                 <div class="btn">
-                                    <a class="personcenter fl" href="usercenter">进入个人中心</a>
-                                    <a class="fr" href="/logout/">退出</a>
+                                    <a class="personcenter fl" href="{% url 'users:user_info' %}">进入个人中心</a>
+                                    <a class="fr" href="{% url 'users:logout' %}">退出</a>
                                 </div>
                             </div>
                         </div>
                     {% else %}
-                        <!--登录后跳转-->
                         <a style="color:white" class="fr registerbtn" href="{% url 'users:register' %}">注册</a>
                         <a style="color:white" class="fr loginbtn" href="{% url 'users:login' %}">登录</a>
                     {% endif %}
+
+
                 </div>
             </div>
+
             <div class="middle">
                 <div class="wp">
-                    <a href="index.html"><img class="fl" src="{% static 'images/logo.jpg' %}"/></a>
+                    <a href="/"><img class="fl" src="{% static 'images/logo.jpg' %}"/></a>
                     <div class="searchbox fr">
                         <div class="selectContainer fl">
                             <span class="selectOption" id="jsSelectOption" data-value="course">
@@ -68,19 +79,21 @@
                     </div>
                 </div>
             </div>
+
+
             <nav>
                 <div class="nav">
                     <div class="wp">
-                       <ul>
+                        <ul>
                             <li {% if request.path == '/' %}class="active" {% endif %}><a
                                     href="{% url 'index' %}">首页</a></li>
                             <li {% if request.path|slice:'7' == '/course' %}class="active"{% endif %}>
-                                <a href="">
+                                <a href="{% url 'course:course_list' %}">
                                     公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
                                 </a>
                             </li>
                             <li {% if request.path|slice:'12' == '/org/teacher' %}class="active"{% endif %}>
-                                <a href="">授课教师</a>
+                                <a href="{% url 'org:teacher_list' %}">授课教师</a>
                             </li>
                             <li {% if request.path|slice:'9' == '/org/list' %}class="active" {% endif %}><a
                                     href="{% url 'org:org_list' %}">授课机构</a></li>
@@ -92,6 +105,8 @@
         </div>
     </header>
 </section>
+<!--crumbs start-->
+
 {#面包屑#}
 {% block custom_bread %}
 {% endblock %}
@@ -99,6 +114,7 @@
 {#正文#}
 {% block content %}
 {% endblock %}
+
 
 
 <footer>
@@ -109,7 +125,7 @@
                 <li class="code"><img src="{% static 'images/code.jpg' %}"/>
                     <p class="center">扫描关注微信</p></li>
                 <li class="third"><img class="fl" src="{% static 'images/tell.png' %}"/>
-                    <p class="tell">33333333</p>
+                    <p class="tell">631674589</p>
                     <p class="time">周一至周日 9:00-18:00</p></li>
             </ul>
 
@@ -133,11 +149,23 @@
 
 <script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
 <script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
-<script src="{% static 'js/plugins/laydate/laydate.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/plugins/laydate/laydate.js' %}"></script>
 <script src="{% static 'js/plugins/layer/layer.js' %}"></script>
 <script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/plugins/jquery.scrollLoading.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/deco-common.js' %}" type="text/javascript"></script>
+
+{% block custom_js %}
+
+{% endblock %}
+
 </body>
 </html>
+
+
+
+
+
+
+
