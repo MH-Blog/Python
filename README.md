@@ -31,6 +31,9 @@
 * [实战项目](#实战项目)
     * [Python连接MySQL](https://github.com/MH-Blog/Python/tree/master/Python%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93)
     * [百度图像识别](https://github.com/MH-Blog/Python/tree/master/%E7%99%BE%E5%BA%A6%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB)
+    * [DjangoDemo](https://github.com/MH-Blog/Python/tree/master/DjangoDemo)
+    * [Django+Xadmin开发在线教育网站](https://github.com/MH-Blog/Python/tree/master/MxOnline)
+    * [Python的天空博客](https://github.com/MH-Blog/Python/tree/master/PythonSky)
 * [其它](#其它)
 
 
