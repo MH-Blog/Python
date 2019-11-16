@@ -1,5 +1,4 @@
 import json
-
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
@@ -17,6 +16,7 @@ from utils.mixin_utils import LoginRequiredMixin
 from .models import UserProfile, EmailVerifyRecord, Banner
 from .forms import LoginForm, RegisterForm, ForgetPwdForm, ModifyPwdForm, UserInfoForm, UploadImageForm
 from utils.email_send import send_register_eamil
+from django.shortcuts import render_to_response
 
 
 # 邮箱和用户名都可以登录
@@ -32,6 +32,7 @@ class CustomBackend(ModelBackend):
                 return user
         except Exception as e:
             return None
+
 
 # 首页
 class IndexView(View):
@@ -369,20 +370,16 @@ class MyMessageView(LoginRequiredMixin, View):
             "messages": messages,
         })
 
-
-from django.shortcuts import render_to_response
-
-
-def pag_not_found(request):
-    # 全局404处理函数
-    response = render_to_response('404.html', {})
-    response.status_code = 404
-    return response
-
-
-def page_error(request):
-    # 全局500处理函数
-    from django.shortcuts import render_to_response
-    response = render_to_response('500.html', {})
-    response.status_code = 500
-    return response
+#
+# def pag_not_found(request):
+#     # 全局404处理函数
+#     response = render_to_response('404.html', {})
+#     response.status_code = 404
+#     return response
+#
+#
+# def page_error(request):
+#     # 全局500处理函数
+#     response = render_to_response('500.html', {})
+#     response.status_code = 500
+#     return response

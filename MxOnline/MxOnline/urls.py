@@ -13,22 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.static import serve
-from django.views.generic import TemplateView
+
 import xadmin
 from users.views import IndexView
-from xadmin.plugins import xversion
-from MxOnline.settings import MEDIA_ROOT
+from MxOnline.settings import MEDIA_ROOT, STATICFILES_ROOT
 
-xadmin.autodiscover()
-xversion.register_models()
+admin.autodiscover()
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
     # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
     re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
+    re_path('static/(?P<path>.*)', serve, {"document_root": STATICFILES_ROOT}),
     path('captcha/', include('captcha.urls')),
     # 个人信息
     path("users/", include('users.urls', namespace='users')),
@@ -36,5 +37,4 @@ urlpatterns = [
     path("org/", include('organization.urls', namespace="org")),
     # 课程app相关url配置
     path("course/", include('courses.urls', namespace="course")),
-
 ]

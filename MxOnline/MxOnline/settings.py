@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'j9x!uom_wa=lu@t)9#lful!0ys_rzz+84^jml4=_6p(&u@cqpp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -36,6 +36,8 @@ AUTHENTICATION_BACKENDS = (
 # Application definition
 
 INSTALLED_APPS = [
+    # simpleui 后台模板
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,23 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MxOnline.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mxonline',
-#         'USER': 'ubuntu',
-#         "PASSWORD": 'ubuntu',
-#         'HOST': '106.13.148.13',
-#         'PORT': '3306',
-#         'TEST': {
-#             'CHARSET': 'utf8',
-#             'COLLATION': 'utf8_general_ci'
-#         }
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -163,6 +148,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+STATICFILES_ROOT = os.path.join(BASE_DIR, 'static')
 # 设置上传文件的路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 指定根目录

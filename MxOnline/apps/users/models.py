@@ -2,9 +2,10 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+__all__ = ['UserProfile', 'EmailVerifyRecord', 'Banner']
+
 
 # Create your models here.
-
 
 # 用户信息
 class UserProfile(AbstractUser):
