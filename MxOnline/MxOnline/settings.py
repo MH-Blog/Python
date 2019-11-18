@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'reversion',
     'captcha',
     'pure_pagination',
+    'DjangoUeditor',
 ]
 
 MIDDLEWARE = [

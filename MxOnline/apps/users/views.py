@@ -371,7 +371,7 @@ class MyMessageView(LoginRequiredMixin, View):
         })
 
 
-def pag_not_found(request):
+def pag_not_found(request,exception):
     # 全局404处理函数
     response = render_to_response('404.html', {})
     response.status_code = 404

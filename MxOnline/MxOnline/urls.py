@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.defaults import page_not_found
 from django.views.static import serve
 
 import xadmin
-from users.views import IndexView
+from users.views import IndexView, page_error
 from MxOnline.settings import MEDIA_ROOT, STATICFILES_ROOT
 
 admin.autodiscover()
@@ -37,9 +38,11 @@ urlpatterns = [
     path("org/", include('organization.urls', namespace="org")),
     # 课程app相关url配置
     path("course/", include('courses.urls', namespace="course")),
+    # 富文本相关url
+    path('ueditor/', include('DjangoUeditor.urls')),
 ]
 
 # # 全局404页面配置
-# handler404 = 'users.views.pag_not_found'
+handler404 = page_not_found
 # # 全局500页面配置
-# handler500 = 'users.views.page_error'
+handler500 = page_error

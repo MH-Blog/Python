@@ -10,7 +10,7 @@ __all__ = ['UserProfile', 'EmailVerifyRecord', 'Banner']
 # 用户信息
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name='昵称', default='', blank=True, null=True)
-    birthday = models.DateField(verbose_name='生日',default='', blank=True, null=True)
+    birthday = models.DateField(verbose_name='生日',default=datetime.now, blank=True, null=True)
     gender = models.CharField(choices=(('male', '男'), ('female', '女')), default='male', max_length=6)
     address = models.CharField(max_length=100, verbose_name='地址', default='', blank=True, null=True)
     mobile = models.CharField(max_length=11, verbose_name='手机号', default='', blank=True, null=True)

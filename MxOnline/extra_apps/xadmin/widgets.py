@@ -14,14 +14,14 @@ from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
 from django.utils.translation import ugettext as _
 
-from .util import vendor
+import util
 
 
 class AdminDateWidget(forms.DateInput):
 
     @property
     def media(self):
-        return vendor('datepicker.js', 'datepicker.css', 'xadmin.widget.datetime.js')
+        return util.vendor('datepicker.js', 'datepicker.css', 'xadmin.widget.datetime.js')
 
     def __init__(self, attrs=None, format=None):
         final_attrs = {'class': 'date-field form-control', 'size': '10'}
@@ -39,7 +39,7 @@ class AdminTimeWidget(forms.TimeInput):
 
     @property
     def media(self):
-        return vendor('datepicker.js', 'clockpicker.js', 'clockpicker.css', 'xadmin.widget.datetime.js')
+        return util.vendor('datepicker.js', 'clockpicker.js', 'clockpicker.css', 'xadmin.widget.datetime.js')
 
     def __init__(self, attrs=None, format=None):
         final_attrs = {'class': 'time-field form-control', 'size': '8'}
@@ -57,7 +57,7 @@ class AdminSelectWidget(forms.Select):
 
     @property
     def media(self):
-        return vendor('select.js', 'select.css', 'xadmin.widget.select.js')
+        return util.vendor('select.js', 'select.css', 'xadmin.widget.select.js')
 
 
 class AdminSplitDateTime(forms.SplitDateTimeWidget):

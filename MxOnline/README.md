@@ -9,9 +9,10 @@ Simpleui 3.4
 ```
 1.下载代码仓库到本地  
 2.pip install -r requements.txt  
-3.python manage.py runserver  
-4.http://127.0.0.1/xadmin  访问xadmin后台  
-5.http://127.0.0.1/admin  访问simpleui美化后的admin后台  
+3.安装DjangoUeditor  [github下载](https://github.com/twz915/DjangoUeditor3)  
+4.python manage.py runserver  
+5.http://127.0.0.1/xadmin  访问xadmin后台  
+6.http://127.0.0.1/admin  访问simpleui美化后的admin后台  
 
 
 ## 学习总结
@@ -43,5 +44,8 @@ django app设计
 ### 后台管理系统
 **特点：**
 权限管理、少前端样式、快速开发
+
 ### PEP8规范
 import：先导入python自带的、再导入第三方的、最后导入自己定义的包
+
+
