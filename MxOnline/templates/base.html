@@ -34,8 +34,10 @@
                     {% if request.user.is_authenticated %}
                         <div class="personal">
                             <dl class="user fr">
-                                <dd>{{ user.username }}<img class="down fr"
-                                                            src="{% static "images/top_down.png" %}"/></dd>
+                                <dd>{% if  user.nick_name %}{{ user.nick_name }}{% else %}{{ user.username }}{% endif %}<img
+                                        class="down fr"
+                                        src="{% static "images/top_down.png" %}"/>
+                                </dd>
                                 <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">

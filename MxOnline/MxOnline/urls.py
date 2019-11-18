@@ -38,3 +38,8 @@ urlpatterns = [
     # 课程app相关url配置
     path("course/", include('courses.urls', namespace="course")),
 ]
+
+# # 全局404页面配置
+# handler404 = 'users.views.pag_not_found'
+# # 全局500页面配置
+# handler500 = 'users.views.page_error'

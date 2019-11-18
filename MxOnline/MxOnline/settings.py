@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'j9x!uom_wa=lu@t)9#lful!0ys_rzz+84^jml4=_6p(&u@cqpp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 EMAIL_HOST = "smtp.qq.com"
 EMAIL_PORT = 25
 EMAIL_HOST_USER = "695859954@qq.com"
-EMAIL_HOST_PASSWORD = "dwjybikeqdawhhbc"
+EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
 EMAIL_FROM = "695859954@qq.com"
 
