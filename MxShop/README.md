@@ -33,3 +33,4 @@ Django: 2.2.7
 ### restful api
 **restful api目前是前后端分离最佳实践**  
 1.轻量，直接通过
+
