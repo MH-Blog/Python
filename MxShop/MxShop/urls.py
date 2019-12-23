@@ -18,12 +18,16 @@ from django.urls import path, include, re_path
 from django.views.static import serve
 from MxShop.settings import MEDIA_ROOT
 from rest_framework.documentation import include_docs_urls
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet,CategoryViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('goods', GoodsListViewSet)
-good_list = GoodsListViewSet.as_view({'get': 'list'})
+# 配置goods的url
+router.register('goods', GoodsListViewSet,base_name='goods')
+# 配置商品目录的url
+router.register('categorys', CategoryViewSet, base_name="categorys")
+
+
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
