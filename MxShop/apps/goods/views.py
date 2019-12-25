@@ -29,12 +29,12 @@ class GoodsPagination(PageNumberPagination):
 
 
 class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-    '''
+    """
     list:
         商品列表，分页，搜索，过滤，排序
     retrieve:
         获取商品详情
-    '''
+    """
 
     # authentication_classes = (TokenAuthentication,)
     throttle_classes = (UserRateThrottle, AnonRateThrottle)
@@ -64,16 +64,16 @@ class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewset
 
 
 class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-    '''
+    """
     list:
         商品分类列表数据
-    '''
+    """
 
     queryset = GoodsCategory.objects.filter(category_type=1)
     serializer_class = CategorySerializer
 
 
-class BannerViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+class BannerViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     首页轮播图
     """
@@ -81,7 +81,7 @@ class BannerViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = BannerSerializer
 
 
-class IndexCategoryViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+class IndexCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     首页商品分类数据
     """
@@ -90,7 +90,7 @@ class IndexCategoryViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = IndexCategorySerializer
 
 
-class HotSearchsViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+class HotSearchsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     热搜
     """
