@@ -97,7 +97,7 @@ class IndexCategorySerializer(serializers.ModelSerializer):
             goods_json = GoodsSerializer(good_ins, many=False, context={'request': self.context['request']}).data
         return goods_json
 
-    # 自定义获取方法
+    # 自定义获取方法exact
     def get_goods(self, obj):
         # 将这个商品相关父类子类等都可以进行匹配
         all_goods = Goods.objects.filter(Q(category_id=obj.id) | Q(category__parent_category_id=obj.id) | Q(

@@ -57,6 +57,10 @@ class UserRegSerializer(serializers.ModelSerializer):
     # 验证用户名是否存在
     username = serializers.CharField(label="用户名", help_text="用户名", required=True, allow_blank=False,
                                      validators=[UniqueValidator(queryset=User.objects.all(), message="用户已经存在")])
+    # 输入密码的时候不显示明文
+    password = serializers.CharField(
+        style={'input_type': 'password'}, label='密码', help_text="密码", write_only=True
+    )
 
     # 验证code
     def validate_code(self, code):
@@ -89,4 +93,4 @@ class UserRegSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'code', 'mobile')
+        fields = ('username', 'code', 'mobile', 'password')
