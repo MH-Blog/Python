@@ -23,13 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'uirz7bksznddp&j(02^z*gw2j^$5+=a32hm(y#d84#^l4txv%n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
 # 重载系统的用户，让UserProfile生效
 AUTH_USER_MODEL = 'users.UserProfile'
-
+#SECURE_SSL_REDIRECT = True
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
     "myApi",
-    "users"
+    "users",
+   # "sslserver"
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -85,11 +86,14 @@ WSGI_APPLICATION = 'TodoAnything.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'todo_anything',
+        'USER': 'todo_anything',
+        'PASSWORD': 'DrpFwDHsptNSXJJJ',
+        'HOST': '39.106.68.33',
+        'PORT': '3306',
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -125,7 +129,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+#STATICFILES_DIRS = (
+#           os.path.join(BASE_DIR, 'static'),
+#          )
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_ROOT = os.path.join(BASE_DIR, 'static')
 
 # 用户认证方式
 AUTHENTICATION_BACKENDS = (
@@ -142,6 +150,8 @@ JWT_AUTH = {
 REST_FRAMEWORK = {
     # 用户登陆认证方式
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'

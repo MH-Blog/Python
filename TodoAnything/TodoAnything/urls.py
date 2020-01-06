@@ -14,22 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, re_path
+
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
+from django.urls import path, include, re_path
+from django.views.static import serve
+from TodoAnything.settings import STATICFILES_ROOT
 
 from myApi.views import ThingViewSet, ArticleViewSet, LinkViewSet, TargetViewSet
 
 router = DefaultRouter()
 # 配置代办事项的url
-router.register('api/thing', ThingViewSet, base_name="thing")
+router.register('thing', ThingViewSet,basename='thing')
 # 配置文章清单的url
-router.register('api/article', ArticleViewSet, base_name="article")
+router.register('article', ArticleViewSet,basename='article')
 # 配置网址导航的url
-router.register('api/link', LinkViewSet, base_name="link")
+router.register('link', LinkViewSet,basename='link')
 # 配置个人中心的url
-router.register('api/user', TargetViewSet, base_name="user")
+router.register('user', TargetViewSet,basename='user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,5 +41,7 @@ urlpatterns = [
     # token
     path('api-token-auth/', views.obtain_auth_token),
     # jwt的认证接口
-    path('api/login/', obtain_jwt_token),
+    path('login/', obtain_jwt_token),
+    re_path('static/(?P<path>.*)', serve, {"document_root": STATICFILES_ROOT}),
 ]
+
