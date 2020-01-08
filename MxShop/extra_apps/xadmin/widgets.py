@@ -14,7 +14,7 @@ from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
 from django.utils.translation import ugettext as _
 
-import util
+from  xadmin import util
 
 
 class AdminDateWidget(forms.DateInput):

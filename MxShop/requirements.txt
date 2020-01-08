@@ -13,6 +13,7 @@ django-guardian==2.1.0
 django-import-export==2.0
 djangorestframework==3.10.3
 djangorestframework-jwt==1.11.0
+drf-extensions==0.5.0
 et-xmlfile==1.0.1
 future==0.18.2
 httplib2==0.14.0
@@ -26,6 +27,7 @@ MarkupSafe==1.1.1
 odfpy==1.4.0
 openpyxl==3.0.2
 Pillow==6.2.1
+psycopg2==2.8.4
 Pygments==2.5.2
 pygments-agentspeak==1.0
 PyJWT==1.7.1

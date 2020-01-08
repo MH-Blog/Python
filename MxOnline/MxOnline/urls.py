@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.defaults import page_not_found
 from django.views.static import serve
-
+from MxOnline.settings import MEDIA_ROOT, STATICFILES_ROOT
 import xadmin
 from users.views import IndexView, page_error
-from MxOnline.settings import MEDIA_ROOT, STATICFILES_ROOT
+
 
 admin.autodiscover()
 

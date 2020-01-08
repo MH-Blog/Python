@@ -53,13 +53,14 @@ INSTALLED_APPS = [
     'DjangoUeditor',
     'corsheaders',
     'django_filters',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'social_django',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ORIGIN_WHITELIST = (
-#     'http://localhost:8000',
-# )
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',
+)
 
 MIDDLEWARE = [
     # 跨域设置
@@ -78,7 +79,7 @@ ROOT_URLCONF = 'MxShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,6 +87,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 第三方登录
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -100,11 +104,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mxshop',
-        # 'USER': 'mxshop',
-        # 'PASSWORD': 'tAsjr5iijbyRcxrs',
-        # 'HOST': '106.13.148.13',
-        'USER': 'root',
-        'PASSWORD': '123456',
+        'USER': 'mxshop',
+        'PASSWORD': 'tAsjr5iijbyRcxrs',
+        'HOST': '106.13.148.13',
+        # 'USER': 'root',
+        # 'PASSWORD': '123456',
         'PORT': '3306',
         # 这里引擎用innodb（默认myisam）,因为后面第三方登录时，要求引擎为INNODB
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
@@ -157,9 +161,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # 用户认证方式
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
-    # 'social_core.backends.weibo.WeiboOAuth2',
-    # 'social_core.backends.qq.QQOAuth2',
-    # 'social_core.backends.weixin.WeixinOAuth2',
+    'social_core.backends.weibo.WeiboOAuth2',
+    'social_core.backends.qq.QQOAuth2',
+    'social_core.backends.weixin.WeixinOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -178,7 +182,21 @@ JWT_AUTH = {
 REST_FRAMEWORK = {
     # 用户登陆认证方式
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
+
+# 第三方登录，里面的值是你的开放平台对应的值
+SOCIAL_AUTH_WEIBO_KEY = '585306143'
+SOCIAL_AUTH_WEIBO_SECRET = '4b4419c22f4774cd3fc0fbbbcffa0ed2'
+
+SOCIAL_AUTH_QQ_KEY = 'xxxxxxx'
+SOCIAL_AUTH_QQ_SECRET = 'xxxxxxx'
+
+SOCIAL_AUTH_WEIXIN_KEY = 'xxxxxxx'
+SOCIAL_AUTH_WEIXIN_SECRET = 'xxxxxxx'
+# 登录成功后跳转到首页
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/index/'

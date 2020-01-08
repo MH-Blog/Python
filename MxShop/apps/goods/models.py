@@ -106,7 +106,7 @@ class Banner(models.Model):
     首页轮播的商品
     """
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name="商品")
-    image = models.ImageField(upload_to='banner', verbose_name="轮播图片")
+    image = models.ImageField(upload_to='  ', verbose_name="轮播图片")
     index = models.IntegerField("轮播顺序",default=0)
     add_time = models.DateTimeField("添加时间", default=datetime.now)
 
