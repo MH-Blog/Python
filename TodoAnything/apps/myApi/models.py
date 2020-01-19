@@ -54,9 +54,9 @@ class LinkModel(models.Model):
     """
 
     LINK_TYPE = (
-        (1, '博客类'),
-        (2, '论坛类'),
-        (3, '资源类')
+        (1, '技术文档'),
+        (2, '技术博客'),
+        (3, '技术论坛')
     )
     title = models.CharField(verbose_name='网站标题', max_length=200)
     type = models.IntegerField(verbose_name="网站类型", choices=LINK_TYPE, default=1)

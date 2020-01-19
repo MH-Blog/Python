@@ -20,19 +20,24 @@ from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 from django.urls import path, include, re_path
 from django.views.static import serve
-from TodoAnything.settings import STATICFILES_ROOT
+from TodoAnything.settings import STATICFILES_ROOT, MEDIA_ROOT
 
 from myApi.views import ThingViewSet, ArticleViewSet, LinkViewSet, TargetViewSet
+from users.views import UserViewSet, VerifyCodeViewSet
 
 router = DefaultRouter()
+# 配置发送验证码url
+router.register('code', VerifyCodeViewSet, base_name='code')
 # 配置代办事项的url
-router.register('thing', ThingViewSet,basename='thing')
+router.register('thing', ThingViewSet, basename='thing')
 # 配置文章清单的url
-router.register('article', ArticleViewSet,basename='article')
+router.register('article', ArticleViewSet, basename='article')
 # 配置网址导航的url
-router.register('link', LinkViewSet,basename='link')
+router.register('link', LinkViewSet, basename='link')
 # 配置个人中心的url
-router.register('user', TargetViewSet,basename='user')
+router.register('target', TargetViewSet, basename='target')
+# 配置用户信息的url
+router.register('users', UserViewSet, basename='users')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,5 +48,6 @@ urlpatterns = [
     # jwt的认证接口
     path('login/', obtain_jwt_token),
     re_path('static/(?P<path>.*)', serve, {"document_root": STATICFILES_ROOT}),
+    # 文件
+    path('media/<path:path>', serve, {'document_root': MEDIA_ROOT}),
 ]
-

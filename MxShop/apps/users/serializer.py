@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-# @Time  : 2019/12/25 下午2:07
-# @Author: MagicHuang
-# @File  : serializer
-
+# users/serializers.py
+__author__ = 'derek'
 
 import re
 from datetime import datetime, timedelta
@@ -74,13 +71,6 @@ class UserRegSerializer(serializers.ModelSerializer):
         style={'input_type': 'password'}, label=True, write_only=True
     )
 
-    # #密码加密保存
-    # def create(self, validated_data):
-    #     user = super(UserRegSerializer, self).create(validated_data=validated_data)
-    #     user.set_password(validated_data["password"])
-    #     user.save()
-    #     return user
-
     # 验证code
     def validate_code(self, code):
         # 用户注册，已post方式提交注册信息，post的数据都保存在initial_data里面
@@ -104,12 +94,12 @@ class UserRegSerializer(serializers.ModelSerializer):
         # 所有字段。attrs是字段验证合法之后返回的总的dict
 
     def validate(self, attrs):
-        # 前端没有传mobile值到后端，这里添加进来
-        attrs["mobile"] = attrs["username"]
+        # 前端没有传email值到后端，这里添加进来
+        attrs["email"] = attrs["username"]
         # code是自己添加得，数据库中并没有这个字段，验证完就删除掉
         del attrs["code"]
         return attrs
 
     class Meta:
         model = User
-        fields = ('username', 'code', 'mobile', 'password')
+        fields = ('username', 'code', 'email')

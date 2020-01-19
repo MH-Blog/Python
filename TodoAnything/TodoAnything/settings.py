@@ -11,11 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
 import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -23,13 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'uirz7bksznddp&j(02^z*gw2j^$5+=a32hm(y#d84#^l4txv%n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 # 重载系统的用户，让UserProfile生效
 AUTH_USER_MODEL = 'users.UserProfile'
-#SECURE_SSL_REDIRECT = True
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,8 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
     "myApi",
-    "users",
-   # "sslserver"
+    'users.apps.UsersConfig',
+    # "sslserver"
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -129,12 +131,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = (
-#           os.path.join(BASE_DIR, 'static'),
-#          )
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_ROOT = os.path.join(BASE_DIR, 'static')
-
+# 设置上传文件的路径
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # 用户认证方式
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -156,3 +157,13 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
+
+# 邮箱验证规则
+REGEX_EMAIL = '^[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}$'
+# 发送邮箱
+EMAIL_HOST = "smtp.163.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "pythonsky@163.com"
+EMAIL_HOST_PASSWORD = "pythonskysmtp123"
+EMAIL_USE_TLS = True
+EMAIL_FROM = "pythonsky@163.com"
