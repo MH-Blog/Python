@@ -20,7 +20,7 @@ jdcal==1.4.1
 MarkupPy==1.14
 odfpy==1.4.0
 openpyxl==3.0.0
-Pillow==6.2.1
+Pillow==8.1.1
 pipreqs==0.4.9
 progressbar2==3.47.0
 PyMySQL==0.9.3
