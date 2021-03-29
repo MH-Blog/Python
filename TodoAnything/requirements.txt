@@ -27,7 +27,7 @@ odfpy==1.4.0
 openpyxl==3.0.2
 Pillow==6.2.1
 psycopg2==2.8.4
-Pygments==2.5.2
+Pygments==2.7.4
 pygments-agentspeak==1.0
 PyJWT==1.7.1
 PyMySQL==0.9.3
