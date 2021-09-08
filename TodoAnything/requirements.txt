@@ -25,7 +25,7 @@ MarkupPy==1.14
 MarkupSafe==1.1.1
 odfpy==1.4.0
 openpyxl==3.0.2
-Pillow==6.2.1
+Pillow==8.3.2
 psycopg2==2.8.4
 Pygments==2.5.2
 pygments-agentspeak==1.0
